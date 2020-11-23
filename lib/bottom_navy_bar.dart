@@ -146,7 +146,7 @@ class _ItemWidget extends StatelessWidget {
       container: true,
       selected: isSelected,
       child: AnimatedContainer(
-        width: isSelected ? 130 : 50,
+        width: !item.short ? 130 : 50,
         height: double.maxFinite,
         duration: animationDuration,
         curve: curve,
@@ -159,7 +159,7 @@ class _ItemWidget extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           physics: NeverScrollableScrollPhysics(),
           child: Container(
-            width: isSelected ? 130 : 50,
+            width: !item.short ? 130 : 50,
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Row(
               mainAxisSize: MainAxisSize.max,
@@ -175,20 +175,20 @@ class _ItemWidget extends StatelessWidget {
                             ? item.activeColor
                             : item.inactiveColor,
                   ),
-                  child: item.icon,
+                  child: item.short ? Expanded(child: item.icon,) : item.icon,
                 ),
-                if (isSelected)
+                if (!item.short)
                   Expanded(
                     child: Container(
                       padding: EdgeInsets.symmetric(horizontal: 4),
                       child: DefaultTextStyle.merge(
                         style: TextStyle(
                           color: item.activeColor,
-                          fontWeight: FontWeight.bold,
+                          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                         ),
                         maxLines: 1,
                         textAlign: item.textAlign,
-                        child: item.title,
+                        child: item.title, //isSelected ? item.title : item.short ?? Text(''),
                       ),
                     ),
                   ),
@@ -210,6 +210,7 @@ class BottomNavyBarItem {
     this.activeColor = Colors.blue,
     this.textAlign,
     this.inactiveColor,
+    this.short,
   }) : assert(icon != null),
        assert(title != null);
 
@@ -231,4 +232,5 @@ class BottomNavyBarItem {
   /// This will take effect only if [title] it a [Text] widget.
   final TextAlign textAlign;
 
+  final bool short;
 }
