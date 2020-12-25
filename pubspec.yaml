@@ -7,6 +7,8 @@ environment:
   sdk: ">=2.2.2 <3.0.0"
 
 dependencies:
+  sizer: ^1.1.8
+
   flutter:
     sdk: flutter
 

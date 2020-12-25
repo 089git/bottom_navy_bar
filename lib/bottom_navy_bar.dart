@@ -210,7 +210,7 @@ class BottomNavyBarItem {
     this.activeColor = Colors.blue,
     this.textAlign,
     this.inactiveColor,
-    this.short,
+    this.itemWidth,
   }) : assert(icon != null),
        assert(title != null);
 
@@ -232,5 +232,5 @@ class BottomNavyBarItem {
   /// This will take effect only if [title] it a [Text] widget.
   final TextAlign textAlign;
 
-  final bool short;
+  final double itemWidth;
 }
