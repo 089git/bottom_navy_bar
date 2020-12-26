@@ -142,6 +142,7 @@ class _ItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print('bottom_navy_bar item.width ' + item.itemWidth.toString());
     return Semantics(
       container: true,
       selected: isSelected,
@@ -163,7 +164,7 @@ class _ItemWidget extends StatelessWidget {
             padding: EdgeInsets.symmetric(horizontal: 8),
             child: Row(
               mainAxisSize: MainAxisSize.max,
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.center,
               children: <Widget>[
                 IconTheme(
@@ -175,21 +176,19 @@ class _ItemWidget extends StatelessWidget {
                             ? item.activeColor
                             : item.inactiveColor,
                   ),
-                  child: item.itemWidth >= 100 ? Expanded(child: item.icon,) : item.icon,
+                  child: item.icon,
                 ),
-                if (item.itemWidth >= 100)
-                  Expanded(
-                    child: Container(
-                      padding: EdgeInsets.symmetric(horizontal: 4),
-                      child: DefaultTextStyle.merge(
-                        style: TextStyle(
-                          color: item.activeColor,
-                          fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                        ),
-                        maxLines: 1,
-                        textAlign: item.textAlign,
-                        child: item.title, //isSelected ? item.title : item.short ?? Text(''),
+                if (item.itemWidth > 80)
+                  Container(
+                    padding: EdgeInsets.symmetric(horizontal: 4),
+                    child: DefaultTextStyle.merge(
+                      style: TextStyle(
+                        color: item.activeColor,
+                        fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
                       ),
+                      maxLines: 1,
+                      textAlign: item.textAlign,
+                      child: item.title, //isSelected ? item.title : item.short ?? Text(''),
                     ),
                   ),
               ],
