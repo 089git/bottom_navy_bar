@@ -142,7 +142,7 @@ class _ItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('bottom_navy_bar item.width ' + item.itemWidth.toString());
+    //print('bottom_navy_bar item.width ' + item.itemWidth.toString());
     return Semantics(
       container: true,
       selected: isSelected,
